@@ -76,7 +76,7 @@ const StyledTitle = styled.h3`
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  ${Typography.title1};
+  ${Typography.title2};
 `
 
 const StyledDate = styled.span`

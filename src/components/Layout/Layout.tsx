@@ -3,6 +3,7 @@ import styled from "styled-components"
 import Header from "@/components/Layout/Header"
 import TopNav from "@/components/Layout/TopNav"
 import ThemeToggle from "@/components/common/ThemeToggle"
+import breakpoints from "@/layout/breakpoints"
 
 interface Props {
   children: React.ReactNode
@@ -53,7 +54,7 @@ const StyledHeaderInner = styled.div`
   gap: 24px;
   padding: 18px 32px;
 
-  @media (max-width: 600px) {
+  @media (max-width: ${breakpoints.mobile}) {
     flex-wrap: wrap;
     padding: 16px 20px;
   }
@@ -63,6 +64,11 @@ const StyledHeaderRight = styled.div`
   display: flex;
   align-items: center;
   gap: 20px;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    width: 100%;
+    justify-content: space-between;
+  }
 `
 
 const StyledContentsWrapper = styled.main`

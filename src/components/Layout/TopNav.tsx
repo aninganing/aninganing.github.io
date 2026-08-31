@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { Link } from "gatsby"
 import { CATEGORIES } from "@/constants/categories"
 import Typography from "@/layout/typography"
+import breakpoints from "@/layout/breakpoints"
 
 // TODO: 각 카테고리별 페이지 구현 필요
 export default function TopNav() {
@@ -37,5 +38,10 @@ const StyledNavLink = styled(Link)`
   &.active {
     background: ${({ theme }) => theme.accentTintBg};
     color: ${({ theme }) => theme.accentTintText};
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    padding: 6px 12px;
+    font-size: 15px;
   }
 `

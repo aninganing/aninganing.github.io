@@ -4,6 +4,7 @@ import { getImage } from "gatsby-plugin-image"
 import { graphql } from "gatsby"
 import Layout from "@/components/Layout/Layout"
 import PostCard from "@/components/contents/PostCard"
+import breakpoints from "@/layout/breakpoints"
 
 interface Props {
   data: {
@@ -49,7 +50,7 @@ const StyledGrid = styled.div`
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 32px;
 
-  @media (max-width: 720px) {
+  @media (max-width: ${breakpoints.mobile}) {
     grid-template-columns: 1fr;
   }
 `
