@@ -1,10 +1,9 @@
 import React from "react"
 import styled from "styled-components"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
-import { graphql, Link } from "gatsby"
-import Typography from "@/layout/typography"
-import Colors from "@/layout/color"
+import { getImage } from "gatsby-plugin-image"
+import { graphql } from "gatsby"
 import Layout from "@/components/Layout/Layout"
+import PostCard from "@/components/contents/PostCard"
 
 interface Props {
   data: {
@@ -28,85 +27,31 @@ interface Props {
 export default function BlogIndexPage({ data }: Props) {
   return (
     <Layout>
-      <StyledContentsWrapper>
-        <StyledContents>
-          {data.allMarkdownRemark.nodes.map(({ fields, frontmatter }) => (
-            <Link key={fields.slug} to={fields.slug}>
-              <StyledCategory>{frontmatter.category}</StyledCategory>
-              <StyledContentItem>
-                <GatsbyImage
-                  image={getImage(frontmatter.featuredImage)}
-                  alt={frontmatter.title}
-                  style={{
-                    border: "1px solid #bbb",
-                    borderRadius: "5px",
-                    width: "100%",
-                  }}
-                />
-                <StyledContentTitle>{frontmatter.title}</StyledContentTitle>
-                <StyledContentCreateAt>
-                  {frontmatter.date}
-                </StyledContentCreateAt>
-                <StyledContentDescription>
-                  {frontmatter.description}
-                </StyledContentDescription>
-              </StyledContentItem>
-            </Link>
-          ))}
-        </StyledContents>
-      </StyledContentsWrapper>
+      <StyledGrid>
+        {data.allMarkdownRemark.nodes.map(({ fields, frontmatter }) => (
+          <PostCard
+            key={fields.slug}
+            slug={fields.slug}
+            category={frontmatter.category}
+            title={frontmatter.title}
+            date={frontmatter.date}
+            description={frontmatter.description}
+            image={getImage(frontmatter.featuredImage)}
+          />
+        ))}
+      </StyledGrid>
     </Layout>
   )
 }
 
-const StyledContentsWrapper = styled.article``
+const StyledGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px;
 
-const StyledContents = styled.ol`
-  display: flex;
-  flex-direction: column;
-  gap: 44px;
-  margin: 0;
-  & > a {
-    text-decoration: none;
+  @media (max-width: 720px) {
+    grid-template-columns: 1fr;
   }
-`
-
-const StyledCategory = styled.mark`
-  padding: 6px 10px;
-  border-radius: 18px;
-  background-color: ${Colors.pointSecondary};
-  color: ${Colors.gray900};
-  ${Typography.label1}
-`
-
-const StyledContentItem = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  margin-top: 16px;
-`
-
-const StyledContentTitle = styled.h3`
-  margin: 0;
-  color: ${Colors.gray300};
-  ${Typography.title1};
-`
-
-const StyledContentCreateAt = styled.span`
-  color: ${Colors.gray500};
-  ${Typography.caption2}
-`
-
-const StyledContentDescription = styled.p`
-  overflow: hidden;
-  white-space: normal;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  word-break: keep-all;
-  color: ${Colors.gray300};
-  ${Typography.body3}
 `
 
 export const pageQuery = graphql`
