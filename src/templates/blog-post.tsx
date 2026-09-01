@@ -10,46 +10,47 @@ import Seo from "../components/seo"
 export default function BlogPostTemplate({ data: { markdownRemark: post } }) {
   const thumbnailImage = getImage(post.frontmatter.featuredImage)
   return (
-    <>
-      <Seo
-        title={post.frontmatter.title}
-        description={post.frontmatter.description || post.excerpt}
-      />
-      <Layout>
-        <StyledArticleHeader>
-          {post.frontmatter.category && (
-            <CategoryBadge>{post.frontmatter.category}</CategoryBadge>
-          )}
-          <StyledTitle>{post.frontmatter.title}</StyledTitle>
-          {post.frontmatter.description && (
-            <StyledSubTitle>{post.frontmatter.description}</StyledSubTitle>
-          )}
-          <StyledCreateAt>{post.frontmatter.date}</StyledCreateAt>
-        </StyledArticleHeader>
-        {thumbnailImage && (
-          <StyledImage image={thumbnailImage} alt={post.frontmatter.title} />
+    <Layout>
+      <StyledArticleHeader>
+        {post.frontmatter.category && (
+          <CategoryBadge>{post.frontmatter.category}</CategoryBadge>
         )}
-        <StyledArticle
-          className="blog-post"
-          itemScope
-          itemType="http://schema.org/Article"
-        >
-          <section
-            dangerouslySetInnerHTML={{ __html: post.html }}
-            itemProp="articleBody"
-          />
-          {post.frontmatter.tags && (
-            <StyledTagWrapper>
-              {post.frontmatter.tags.map(tag => (
-                <StyledTag key={tag}>{`# ${tag}`}</StyledTag>
-              ))}
-            </StyledTagWrapper>
-          )}
-        </StyledArticle>
-      </Layout>
-    </>
+        <StyledTitle>{post.frontmatter.title}</StyledTitle>
+        {post.frontmatter.description && (
+          <StyledSubTitle>{post.frontmatter.description}</StyledSubTitle>
+        )}
+        <StyledCreateAt>{post.frontmatter.date}</StyledCreateAt>
+      </StyledArticleHeader>
+      {thumbnailImage && (
+        <StyledImage image={thumbnailImage} alt={post.frontmatter.title} />
+      )}
+      <StyledArticle
+        className="blog-post"
+        itemScope
+        itemType="http://schema.org/Article"
+      >
+        <section
+          dangerouslySetInnerHTML={{ __html: post.html }}
+          itemProp="articleBody"
+        />
+        {post.frontmatter.tags && (
+          <StyledTagWrapper>
+            {post.frontmatter.tags.map(tag => (
+              <StyledTag key={tag}>{`# ${tag}`}</StyledTag>
+            ))}
+          </StyledTagWrapper>
+        )}
+      </StyledArticle>
+    </Layout>
   )
 }
+
+export const Head = ({ data: { markdownRemark: post } }) => (
+  <Seo
+    title={post.frontmatter.title}
+    description={post.frontmatter.description || post.excerpt}
+  />
+)
 
 const StyledArticleHeader = styled.div`
   display: flex;

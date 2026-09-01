@@ -24,12 +24,13 @@ const Seo = ({ description, title, children }) => {
 
   const metaDescription = description || site.siteMetadata.description
   const defaultTitle = site.siteMetadata?.title
+  const pageTitle = title ? (defaultTitle ? `${title} | ${defaultTitle}` : title) : defaultTitle
 
   return (
     <>
-      <title>{defaultTitle ? `${title} | ${defaultTitle}` : title}</title>
+      <title>{pageTitle}</title>
       <meta name="description" content={metaDescription} />
-      <meta property="og:title" content={title} />
+      <meta property="og:title" content={title || defaultTitle} />
       <meta property="og:description" content={metaDescription} />
       <meta property="og:type" content="website" />
       {children}

@@ -2,6 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import Layout from "@/components/Layout/Layout"
 import PostGrid from "@/components/contents/PostGrid"
+import Seo from "@/components/seo"
 
 interface Props {
   data: {
@@ -29,6 +30,8 @@ export default function BlogIndexPage({ data }: Props) {
     </Layout>
   )
 }
+
+export const Head = () => <Seo />
 
 export const pageQuery = graphql`
   query {
