@@ -20,6 +20,12 @@ export const wrapRootElement = ({ element }) => (
 export const onRenderBody = ({ setHeadComponents }) => {
   setHeadComponents([
     <link
+      rel="icon"
+      href="/favicon.svg"
+      type="image/svg+xml"
+      key="faviconSvg"
+    />,
+    <link
       rel="preload"
       href="/fonts/Pretendard-Bold.woff"
       as="font"
