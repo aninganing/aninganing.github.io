@@ -1,46 +1,47 @@
 import React from "react"
 import styled from "styled-components"
+import { Link } from "gatsby"
 import { CATEGORIES } from "@/constants/categories"
 import Typography from "@/layout/typography"
-import Colors from "@/layout/color"
+import breakpoints from "@/layout/breakpoints"
 
 // TODO: 각 카테고리별 페이지 구현 필요
 export default function TopNav() {
   return (
-    <StyledNavigation>
-      <StyledCategoryWrapper>
-        {CATEGORIES.map(({ to, label }) => (
-          <StyledCategory key={to}>
-            <a href={to}>{label}</a>
-          </StyledCategory>
-        ))}
-      </StyledCategoryWrapper>
-    </StyledNavigation>
+    <StyledNav>
+      {CATEGORIES.map(({ to, label }) => (
+        <StyledNavLink key={to} to={to} activeClassName="active">
+          {label}
+        </StyledNavLink>
+      ))}
+    </StyledNav>
   )
 }
 
-const StyledNavigation = styled.nav`
-  border-top: 1px solid ${Colors.gray800};
-  border-bottom: 1px solid ${Colors.gray800};
-  padding: 16px 26px;
-`
-
-const StyledCategoryWrapper = styled.ul`
+const StyledNav = styled.nav`
   display: flex;
-  gap: 32px;
-  margin: 0;
+  gap: 6px;
 `
 
-const StyledCategory = styled.li`
-  list-style-type: none;
-  color: ${Colors.gray300};
-  margin: 0;
-  ${Typography.title2}
-  & > a {
-    color: inherit;
-    text-decoration: none;
+const StyledNavLink = styled(Link)`
+  padding: 8px 16px;
+  border-radius: 999px;
+  color: ${({ theme }) => theme.textSecondary};
+  text-decoration: none;
+  text-transform: capitalize;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+  ${Typography.title2};
+
+  &:hover,
+  &.active {
+    background: ${({ theme }) => theme.accentTintBg};
+    color: ${({ theme }) => theme.accentTintText};
   }
-  &:hover {
-    color: ${Colors.pointSecondary};
+
+  @media (max-width: ${breakpoints.mobile}) {
+    padding: 6px 12px;
+    font-size: 15px;
   }
 `

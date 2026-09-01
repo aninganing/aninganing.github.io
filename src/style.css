@@ -66,6 +66,92 @@
   --color-border: #333;
 }
 
+[data-theme="dark"] {
+  --color-primary: #a6c158;
+  --color-primary-2: #a6c158;
+  --color-text: #a9ad9a;
+  --color-text-light: #767a69;
+  --color-heading: #edeee4;
+  --color-heading-black: #edeee4;
+  --color-accent: #a6c158;
+  --color-highlight-1: #c3da8c;
+  --color-highlight-2: #a9ad9a;
+  --color-gray-900: #edeee4;
+  --color-background: #1b1d17;
+  --color-background-2: #1b1d17;
+  --color-background-3: #22251d;
+  --color-border: #343729;
+}
+
+/* Prism.js code blocks in dark mode (base theme: prismjs/themes/prism.css) */
+
+[data-theme="dark"] code[class*="language-"],
+[data-theme="dark"] pre[class*="language-"] {
+  color: #ccc;
+  text-shadow: none;
+}
+
+[data-theme="dark"] :not(pre) > code[class*="language-"],
+[data-theme="dark"] pre[class*="language-"] {
+  background: #22251d;
+}
+
+[data-theme="dark"] .token.comment,
+[data-theme="dark"] .token.prolog,
+[data-theme="dark"] .token.doctype,
+[data-theme="dark"] .token.cdata {
+  color: #767a69;
+}
+
+[data-theme="dark"] .token.punctuation {
+  color: #ccc;
+}
+
+[data-theme="dark"] .token.property,
+[data-theme="dark"] .token.tag,
+[data-theme="dark"] .token.boolean,
+[data-theme="dark"] .token.number,
+[data-theme="dark"] .token.constant,
+[data-theme="dark"] .token.symbol,
+[data-theme="dark"] .token.deleted {
+  color: #e2777a;
+}
+
+[data-theme="dark"] .token.selector,
+[data-theme="dark"] .token.attr-name,
+[data-theme="dark"] .token.string,
+[data-theme="dark"] .token.char,
+[data-theme="dark"] .token.builtin,
+[data-theme="dark"] .token.inserted {
+  color: #b6d98a;
+}
+
+[data-theme="dark"] .token.operator,
+[data-theme="dark"] .token.entity,
+[data-theme="dark"] .token.url,
+[data-theme="dark"] .language-css .token.string,
+[data-theme="dark"] .style .token.string {
+  color: #67cdcc;
+  background: none;
+}
+
+[data-theme="dark"] .token.atrule,
+[data-theme="dark"] .token.attr-value,
+[data-theme="dark"] .token.keyword {
+  color: #a6c158;
+}
+
+[data-theme="dark"] .token.function,
+[data-theme="dark"] .token.class-name {
+  color: #f8c555;
+}
+
+[data-theme="dark"] .token.regex,
+[data-theme="dark"] .token.important,
+[data-theme="dark"] .token.variable {
+  color: #f08d49;
+}
+
 /* HTML elements */
 
 *,
@@ -89,6 +175,7 @@ body {
   font-size: var(--fontSize-1);
   color: var(--color-text);
   background: var(--color-background-2);
+  transition: background 0.25s ease, color 0.25s ease;
 }
 
 footer {

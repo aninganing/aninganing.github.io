@@ -1,4 +1,5 @@
 import React from "react"
+import { ThemeContextProvider } from "./src/context/ThemeContext"
 
 /**
  * Implement Gatsby's SSR (Server Side Rendering) APIs in this file.
@@ -7,10 +8,23 @@ import React from "react"
  */
 
 /**
+ * @type {import('gatsby').GatsbySSR['wrapRootElement']}
+ */
+export const wrapRootElement = ({ element }) => (
+  <ThemeContextProvider>{element}</ThemeContextProvider>
+)
+
+/**
  * @type {import('gatsby').GatsbySSR['onRenderBody']}
  */
 export const onRenderBody = ({ setHeadComponents }) => {
   setHeadComponents([
+    <link
+      rel="icon"
+      href="/favicon.svg"
+      type="image/svg+xml"
+      key="faviconSvg"
+    />,
     <link
       rel="preload"
       href="/fonts/Pretendard-Bold.woff"

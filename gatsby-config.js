@@ -9,7 +9,7 @@
  */
 module.exports = {
   siteMetadata: {
-    title: `개발새발`,
+    title: `이렇게 삽질하다간 지구 끝까지 닿겠어`,
     author: {
       name: `anna`,
       summary: `web front developer`,
@@ -116,7 +116,7 @@ module.exports = {
         // https://css-tricks.com/meta-theme-color-and-trickery/
         // theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/favicon-source.png`, // This path is relative to the root of the site.
       },
     },
   ],
