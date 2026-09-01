@@ -43,8 +43,7 @@ export default function ResumeSectionNav({ offset }: Props) {
     return () => observer.disconnect()
   }, [offset])
 
-  const handleClick = (event: React.MouseEvent, id: string) => {
-    event.preventDefault()
+  const scrollToSection = (id: string) => {
     const el = document.getElementById(id)
     if (!el) return
     el.scrollIntoView({ behavior: "smooth", block: "start" })
@@ -52,45 +51,38 @@ export default function ResumeSectionNav({ offset }: Props) {
     setActiveId(id)
   }
 
+  const handleLinkClick = (event: React.MouseEvent, id: string) => {
+    event.preventDefault()
+    scrollToSection(id)
+  }
+
   return (
-    <StyledNav style={{ top: offset }} aria-label="이력서 섹션 이동">
+    <StyledDesktopNav style={{ top: offset }} aria-label="이력서 섹션 이동">
       {SECTIONS.map(section => (
         <StyledNavLink
           key={section.id}
           href={`#${section.id}`}
           $active={activeId === section.id}
-          onClick={event => handleClick(event, section.id)}
+          onClick={event => handleLinkClick(event, section.id)}
         >
           {section.label}
         </StyledNavLink>
       ))}
-    </StyledNav>
+    </StyledDesktopNav>
   )
 }
 
-const StyledNav = styled.nav`
+const StyledDesktopNav = styled.nav`
   position: sticky;
   z-index: 9;
   display: flex;
   flex-direction: column;
   gap: 2px;
   align-self: start;
+  transform: translateZ(0);
 
   @media (max-width: ${breakpoints.mobile}) {
-    position: sticky;
-    top: 0;
-    flex-direction: row;
-    overflow-x: auto;
-    gap: 8px;
-    padding: 10px 4px;
-    background: ${({ theme }) => theme.bg};
-    border-bottom: 1px solid ${({ theme }) => theme.border};
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
+    display: none;
   }
 `
 
@@ -109,10 +101,5 @@ const StyledNavLink = styled.a<{ $active: boolean }>`
   &:hover {
     color: ${({ theme }) => theme.accentTintText};
     background: ${({ theme }) => theme.accentTintBg};
-  }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    border-radius: 999px;
-    flex-shrink: 0;
   }
 `
