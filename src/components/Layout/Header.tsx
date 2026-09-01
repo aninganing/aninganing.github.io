@@ -7,10 +7,10 @@ export default function Header() {
 }
 
 const StyledWordmark = styled.a`
-  max-width: 340px;
+  max-width: 360px;
   color: ${({ theme }) => theme.text};
   text-decoration: none;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
   letter-spacing: -0.01em;
   line-height: 1.35;
@@ -20,7 +20,7 @@ const StyledWordmark = styled.a`
   }
 
   @media (max-width: ${breakpoints.mobile}) {
-    font-size: 14px;
-    max-width: 220px;
+    font-size: 15px;
+    max-width: 230px;
   }
 `
