@@ -1,6 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Layout from "@/components/Layout/Layout"
+import Seo from "@/components/seo"
 import PostGrid from "@/components/contents/PostGrid"
 
 interface Props {
@@ -22,7 +23,7 @@ interface Props {
   }
 }
 
-export default function BlogIndexPage({ data }: Props) {
+export default function DevPage({ data }: Props) {
   return (
     <Layout>
       <PostGrid nodes={data.allMarkdownRemark.nodes} />
@@ -30,9 +31,14 @@ export default function BlogIndexPage({ data }: Props) {
   )
 }
 
+export const Head = () => <Seo title="Dev" />
+
 export const pageQuery = graphql`
   query {
-    allMarkdownRemark(sort: [{ frontmatter: { date: DESC } }]) {
+    allMarkdownRemark(
+      filter: { frontmatter: { category: { eq: "dev" } } }
+      sort: [{ frontmatter: { date: DESC } }]
+    ) {
       nodes {
         fields {
           slug
